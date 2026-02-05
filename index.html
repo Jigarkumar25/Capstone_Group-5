@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Pattern Tutor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div><strong>Accessibility Tutor</strong> | <span id="level-title">Level 1</span></div>
+        <select id="level-select" onchange="loadLevel()">
+            <option value="0">Level 1: Alt Text (Perceivable)</option>
+            <option value="1">Level 2: Contrast (Perceivable)</option>
+            <option value="2">Level 3: Button Roles (Operable)</option>
+            <option value="3">Level 4: Form Labels (Understandable)</option>
+        </select>
+    </header>
+
+    <div class="main-content">
+        <div class="panel">
+            <div class="panel-header">HTML Editor</div>
+            <textarea id="editor" oninput="updatePreview()"></textarea>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">Live Preview (What the user sees)</div>
+            <div id="preview"></div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div id="feedback" class="hint">Welcome! Fix the code and click check.</div>
+        <button class="btn btn-check" onclick="validate()">Check Work</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
