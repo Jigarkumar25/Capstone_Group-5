@@ -4,38 +4,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessibility Pattern Tutor</title>
+    <title>Accessibility Pattern Tutor | Mastery Platform</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
 
-    <header>
-        <div><strong>Accessibility Tutor</strong> | <span id="level-title">Level 1</span></div>
-        <select id="level-select" onchange="loadLevel()">
-            <option value="0">Level 1: Alt Text (Perceivable)</option>
-            <option value="1">Level 2: Contrast (Perceivable)</option>
-            <option value="2">Level 3: Button Roles (Operable)</option>
-            <option value="3">Level 4: Form Labels (Understandable)</option>
-        </select>
-    </header>
-
-    <div class="main-content">
-        <div class="panel">
-            <div class="panel-header">HTML Editor</div>
-            <textarea id="editor" oninput="updatePreview()"></textarea>
+    <aside id="sidebar">
+        <div class="sidebar-logo">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>WCAG TUTOR</span>
         </div>
-
-        <div class="panel">
-            <div class="panel-header">Live Preview (What the user sees)</div>
-            <div id="preview"></div>
+        <div id="sidebar-content">
+            <!-- Sections and items injected by JS -->
         </div>
-    </div>
+    </aside>
 
-    <div class="controls">
-        <div id="feedback" class="hint">Welcome! Fix the code and click check.</div>
-        <button class="btn btn-check" onclick="validate()">Check Work</button>
-    </div>
+    <main class="main-stage">
+        <header class="top-nav">
+            <div class="breadcrumb">
+                <span id="section-label">1. Perceivable</span>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span id="lesson-label">1.1.1 Non-text Content</span>
+            </div>
+            <div class="progress-stats">
+                <div class="progress-pill">
+                    Mastery: <span id="total-progress">0%</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="workspace">
+            <!-- Left: Documentation & Learning -->
+            <div class="learning-panel">
+                <div class="panel-tabs">
+                    <button class="tab-link active" onclick="setTab('learn', this)">Learn</button>
+                    <button class="tab-link" onclick="setTab('video', this)">Video</button>
+
+                </div>
+
+                <div id="learn-tab" class="tab-pane active">
+                    <h2 id="content-title">1.1.1 Non-text Content</h2>
+                    <p id="content-desc">Loading instructions...</p>
+                    <div class="resource-links">
+                        <a href="#" id="wcag-link" target="_blank"><i class="fa-solid fa-book"></i> Official WCAG
+                            Guideline</a>
+                    </div>
+                </div>
+
+                <div id="video-tab" class="tab-pane">
+                    <div class="video-container">
+                        <iframe id="video-player" width="100%" height="200" src="" frameborder="0"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center/Right: Interactive Code -->
+            <div class="editor-container" id="editor-view">
+                <div class="editor-header">
+                    <span><i class="fa-solid fa-code"></i> HTML Editor</span>
+                </div>
+                <textarea id="code-editor" spellcheck="false" oninput="runPreview()"></textarea>
+
+                <div class="preview-header">
+                    <span><i class="fa-solid fa-eye"></i> Live Preview</span>
+                </div>
+                <iframe id="live-preview" sandbox="allow-forms allow-popups allow-same-origin"></iframe>
+
+            </div>
+
+            <!-- Quiz View (Toggled) -->
+            <div class="quiz-container hidden" id="quiz-view">
+                <div class="quiz-card">
+                    <i class="fa-solid fa-lightbulb quiz-icon"></i>
+                    <h3 id="quiz-q-text">Question Title</h3>
+                    <div id="quiz-options" class="options-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="action-bar">
+            <div id="status-message" class="status-msg default">
+                <i class="fa-solid fa-circle-info"></i> Fix the code to meet the requirement.
+            </div>
+            <div class="action-buttons">
+                <button class="btn-check" id="check-btn" onclick="checkCurrentStep()">Check My Work</button>
+                <button class="btn-next hidden" id="next-btn" onclick="goToNext()">Next Step <i
+                        class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </footer>
+    </main>
 
     <script src="script.js"></script>
 </body>
